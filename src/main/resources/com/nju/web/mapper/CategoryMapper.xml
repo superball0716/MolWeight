@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nju.web.mapper.CategoryMapper">
+  <resultMap id="BaseResultMap" type="com.nju.web.model.Category">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="Lu" jdbcType="DOUBLE" property="lu" />
+    <result column="M0" jdbcType="DOUBLE" property="m0" />
+    <result column="pc" jdbcType="DOUBLE" property="pc" />
+    <result column="deltaHm0" jdbcType="DOUBLE" property="deltahm0" />
+    <result column="sigmae" jdbcType="DOUBLE" property="sigmae" />
+    <result column="Tm0" jdbcType="DOUBLE" property="tm0" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, Lu, M0, pc, deltaHm0, sigmae, Tm0
+  </sql>
+  <select id="getAllCategoryName" resultType="String">
+  	select name from category
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from category
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from category
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.nju.web.model.Category">
+    insert into category (id, name, Lu, 
+      M0, pc, deltaHm0, sigmae, 
+      Tm0)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{lu,jdbcType=DOUBLE}, 
+      #{m0,jdbcType=DOUBLE}, #{pc,jdbcType=DOUBLE}, #{deltahm0,jdbcType=DOUBLE}, #{sigmae,jdbcType=DOUBLE}, 
+      #{tm0,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.nju.web.model.Category">
+    insert into category
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="lu != null">
+        Lu,
+      </if>
+      <if test="m0 != null">
+        M0,
+      </if>
+      <if test="pc != null">
+        pc,
+      </if>
+      <if test="deltahm0 != null">
+        deltaHm0,
+      </if>
+      <if test="sigmae != null">
+        sigmae,
+      </if>
+      <if test="tm0 != null">
+        Tm0,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lu != null">
+        #{lu,jdbcType=DOUBLE},
+      </if>
+      <if test="m0 != null">
+        #{m0,jdbcType=DOUBLE},
+      </if>
+      <if test="pc != null">
+        #{pc,jdbcType=DOUBLE},
+      </if>
+      <if test="deltahm0 != null">
+        #{deltahm0,jdbcType=DOUBLE},
+      </if>
+      <if test="sigmae != null">
+        #{sigmae,jdbcType=DOUBLE},
+      </if>
+      <if test="tm0 != null">
+        #{tm0,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.nju.web.model.Category">
+    update category
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="lu != null">
+        Lu = #{lu,jdbcType=DOUBLE},
+      </if>
+      <if test="m0 != null">
+        M0 = #{m0,jdbcType=DOUBLE},
+      </if>
+      <if test="pc != null">
+        pc = #{pc,jdbcType=DOUBLE},
+      </if>
+      <if test="deltahm0 != null">
+        deltaHm0 = #{deltahm0,jdbcType=DOUBLE},
+      </if>
+      <if test="sigmae != null">
+        sigmae = #{sigmae,jdbcType=DOUBLE},
+      </if>
+      <if test="tm0 != null">
+        Tm0 = #{tm0,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.nju.web.model.Category">
+    update category
+    set name = #{name,jdbcType=VARCHAR},
+      Lu = #{lu,jdbcType=DOUBLE},
+      M0 = #{m0,jdbcType=DOUBLE},
+      pc = #{pc,jdbcType=DOUBLE},
+      deltaHm0 = #{deltahm0,jdbcType=DOUBLE},
+      sigmae = #{sigmae,jdbcType=DOUBLE},
+      Tm0 = #{tm0,jdbcType=DOUBLE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
